@@ -1,6 +1,6 @@
 # My Cursor Skills
 
-Personal Cursor IDE skills collection. Portable across machines and accounts.
+Personal Cursor IDE skills collection, portable across machines and accounts.
 
 ## Quick Install
 
@@ -20,18 +20,25 @@ bash /tmp/my-cursor-skills/install.sh
 
 ## Skills
 
-| Skill | Description |
-|-------|-------------|
-| `deep-analysis` | 5-phase adversarial analysis framework for markets, strategies, architectures |
-| `code-simplifier` | Simplify and refine Python code for clarity and maintainability |
+| Skill | Version | Purpose |
+|-------|---------|---------|
+| `plan-review` | `1.1.0` | Review plans before coding, challenge scope, map risks and failure modes |
+| `code-review` | `1.1.0` | Pre-merge risk review focused on production-impact issues |
+| `qa` | `1.1.0` | Browser-based QA workflow with evidence-driven reporting |
+| `ship` | `1.1.0` | Safe ship flow with default dry-run and optional live execution |
+| `impl-strategy` | `1.1.0` | Decide compatibility boundary before implementation |
+| `deep-analysis` | `1.0.0` | 5-phase adversarial deep analysis framework |
+| `code-simplifier` | `1.1.0` | Simplify/refactor Python code while preserving behavior |
 
-## Adding a New Skill
+## Add a New Skill
 
-1. Create a folder under `skills/` with a `SKILL.md`
+1. Create a folder under `skills/` with `SKILL.md`
 2. Optionally add `examples.md`, `references/`, `scripts/`, `assets/`
 3. Commit and push
-4. Re-run the install script on each machine
+4. Re-run install script on each machine
 
 ## Uninstall
 
-Delete the corresponding folders from `~/.cursor/skills/` (or `%USERPROFILE%\.cursor\skills\` on Windows).
+Delete corresponding folders under:
+- Windows: `%USERPROFILE%\.cursor\skills\`
+- Mac/Linux: `~/.cursor/skills/`
