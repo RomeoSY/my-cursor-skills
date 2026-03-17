@@ -1,5 +1,6 @@
 ---
 name: deep-analysis
+version: 1.0.0
 description: >-
   Structured deep analysis framework using a 5-phase adversarial questioning pipeline.
   Compresses weeks of research into hours by extracting hidden consensus, inverting
