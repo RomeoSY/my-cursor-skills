@@ -1,6 +1,7 @@
 ---
 name: code-simplifier
-description: Simplify and refine Python code for clarity, consistency, and maintainability while preserving functionality. Use when the user asks to simplify code, clean up code, refactor for readability, or review code quality.
+version: 1.1.0
+description: Simplify and refactor Python code for clarity, consistency, and maintainability while preserving functionality. Use when the user asks to simplify code, clean up code, or refactor for readability.
 ---
 
 # Code Simplifier
@@ -49,6 +50,12 @@ Do NOT:
 ### 5. Focus Scope
 
 Only simplify code that the user explicitly points to or asks about. Do not refactor unrelated code unless requested.
+
+### 6. Boundary with Other Skills
+
+- This skill is for readability and maintainability refactors.
+- It is NOT a pre-merge risk audit (security, concurrency, stop-ship bugs).
+- For pre-merge bug/risk review, use `code-review`.
 
 ## Workflow
 
