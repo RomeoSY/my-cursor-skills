@@ -1,10 +1,11 @@
 ---
 name: ship
-version: 1.1.0
+version: 1.2.0
 description: >-
   Safe ship workflow with default dry-run mode. Syncs with base branch, runs tests,
   performs a stop-ship quick review, drafts commit and PR content, and only executes
-  commit/push/PR when the user explicitly requests live execution. Use when the user
+  commit/push/PR when the user explicitly requests live execution. Works with or without
+  remote repositories. Use when the user
   says: ship, ship it, 发布, 提交, 推上去, push, 帮我提PR, create PR.
 ---
 
@@ -32,6 +33,8 @@ Do NOT assume `main`. Resolve base branch dynamically.
 ### Bash
 
 ```bash
+HAS_REMOTE=0
+if git remote get-url origin >/dev/null 2>&1; then HAS_REMOTE=1; fi
 BASE_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')"
 [ -z "$BASE_BRANCH" ] && BASE_BRANCH="main"
 CURRENT_BRANCH="$(git branch --show-current)"
@@ -40,6 +43,8 @@ CURRENT_BRANCH="$(git branch --show-current)"
 ### PowerShell
 
 ```powershell
+$HAS_REMOTE = $true
+try { git remote get-url origin *> $null } catch { $HAS_REMOTE = $false }
 $BASE_BRANCH = (git symbolic-ref refs/remotes/origin/HEAD 2>$null) -replace '^refs/remotes/origin/',''
 if (-not $BASE_BRANCH) { $BASE_BRANCH = "main" }
 $CURRENT_BRANCH = git branch --show-current
@@ -57,25 +62,41 @@ If current branch equals `$BASE_BRANCH`: abort — "Ship from a feature branch, 
 
 ```bash
 git status
-git diff $BASE_BRANCH...HEAD --stat
-git log $BASE_BRANCH..HEAD --oneline
 ```
+
+Then inspect scope:
+
+- If `HAS_REMOTE=1`:
+  ```bash
+  git diff origin/$BASE_BRANCH...HEAD --stat
+  git log origin/$BASE_BRANCH..HEAD --oneline
+  ```
+- If `HAS_REMOTE=0`:
+  ```bash
+  git diff --stat --cached
+  git diff --stat
+  git log --oneline -20
+  ```
 
 Understand what's being shipped. Uncommitted changes are always included.
 
 ## Step 2: Sync Strategy
 
-- In **DRY-RUN**: do not merge. Only preview divergence:
-  ```bash
-  git fetch origin $BASE_BRANCH
-  git log --oneline --left-right HEAD...origin/$BASE_BRANCH
-  ```
-- In **LIVE**: merge base branch before tests:
-  ```bash
-  git fetch origin $BASE_BRANCH
-  git merge origin/$BASE_BRANCH --no-edit
-  ```
-  If merge conflicts are complex, stop and show conflicts.
+- If `HAS_REMOTE=1`:
+  - In **DRY-RUN**: do not merge. Only preview divergence:
+    ```bash
+    git fetch origin $BASE_BRANCH
+    git log --oneline --left-right HEAD...origin/$BASE_BRANCH
+    ```
+  - In **LIVE**: merge base branch before tests:
+    ```bash
+    git fetch origin $BASE_BRANCH
+    git merge origin/$BASE_BRANCH --no-edit
+    ```
+    If merge conflicts are complex, stop and show conflicts.
+- If `HAS_REMOTE=0`:
+  - In **DRY-RUN**: skip fetch/merge and use local history only.
+  - In **LIVE**: do not attempt merge; continue with local branch state and clearly note that base sync is skipped due to missing remote.
 
 ## Step 3: Run Tests
 
@@ -95,7 +116,10 @@ If all pass: note the counts and continue.
 
 ## Step 4: Stop-Ship Quick Review
 
-Scan `git diff origin/$BASE_BRANCH` for critical issues only:
+Scan scoped diff for critical issues only:
+
+- If `HAS_REMOTE=1`: `git diff origin/$BASE_BRANCH...HEAD`
+- If `HAS_REMOTE=0`: `git diff --cached` and `git diff`
 
 - SQL injection or unsanitized user input
 - Hardcoded secrets or credentials
@@ -157,8 +181,12 @@ If `gh` is available and user asked for PR creation, run `gh pr create` and retu
 
 Collect automatically (do not ask the user):
 - Branch name: `git rev-parse --abbrev-ref HEAD`
-- Changed files: `git diff origin/$BASE_BRANCH --stat`
-- Commit log: `git log origin/$BASE_BRANCH..HEAD --oneline`
+- Changed files:
+  - If `HAS_REMOTE=1`: `git diff origin/$BASE_BRANCH...HEAD --stat`
+  - If `HAS_REMOTE=0`: combine `git diff --stat --cached` and `git diff --stat`
+- Commit log:
+  - If `HAS_REMOTE=1`: `git log origin/$BASE_BRANCH..HEAD --oneline`
+  - If `HAS_REMOTE=0`: `git log --oneline -20`
 
 Infer change type from paths and commit messages: feature, fix, refactor, or docs.
 
