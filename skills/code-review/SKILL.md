@@ -1,11 +1,11 @@
 ---
 name: code-review
-version: 1.2.0
+version: 1.2.1
 description: >-
   Pragmatic pre-merge code review for Python-first projects. Reviews only changed files,
   uses three severities (CRITICAL/WARNING/INFORMATIONAL), and requires confidence + evidence
   + mitigation checks before marking stop-ship issues. Use when user asks to review code,
-  review a PR, check production risks, or says: code review, 代码审查, review, 帮我审查,
+  review a PR, check production risks, or says: code review, 代码审查, PR review, 帮我审查代码,
   提交前检查. Not for readability-only refactors; use code-simplifier for that.
 ---
 
@@ -47,16 +47,21 @@ $CURRENT_BRANCH = git branch --show-current
 ### Scope Resolution Rules
 
 1. If remote exists:
-   - Fetch: `git fetch origin $BASE_BRANCH --quiet`
-   - Changed files: `git diff --name-only origin/$BASE_BRANCH...HEAD`
-2. If no remote:
-   - Changed files from local work only:
+   - Try fetch: `git fetch origin $BASE_BRANCH --quiet`
+   - If fetch succeeds, include committed diff files: `git diff --name-only origin/$BASE_BRANCH...HEAD`
+   - Always include local files (staged + unstaged):
      - `git diff --name-only --cached`
      - `git diff --name-only`
-3. If changed file list is empty:
+   - Final scope is the union of all three lists.
+2. If no remote:
+   - Changed files from local work only (union):
+     - `git diff --name-only --cached`
+     - `git diff --name-only`
+3. Deduplicate paths and drop empty lines before review.
+4. If changed file list is empty:
    - If user explicitly gave paths, review those paths only.
    - Otherwise output: `No changed files detected. Provide target files or a diff.` and stop.
-4. If on base branch and no local diff, stop.
+5. If on base branch and no local diff, stop.
 
 ## Step 1: Build Evidence Per Finding
 
