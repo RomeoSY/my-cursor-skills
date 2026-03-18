@@ -22,7 +22,7 @@ bash /tmp/my-cursor-skills/install.sh
 
 | Skill | Version | Purpose |
 |-------|---------|---------|
-| `plan-review` | `1.1.0` | Review plans before coding, challenge scope, map risks and failure modes |
+| `plan-review` | `1.2.0` | Review plans before coding, challenge scope, map risks and failure modes |
 | `code-review` | `1.2.1` | Pre-merge risk review focused on production-impact issues |
 | `qa` | `1.2.0` | Browser-based QA workflow with evidence-driven reporting |
 | `ship` | `1.2.0` | Safe ship flow with default dry-run and optional live execution |
