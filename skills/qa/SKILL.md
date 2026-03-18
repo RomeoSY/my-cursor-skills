@@ -1,11 +1,11 @@
 ---
 name: qa
-version: 1.1.0
+version: 1.2.0
 description: >-
   Systematic QA testing using Cursor's built-in browser. Navigates pages, clicks elements,
   fills forms, takes screenshots, reads console errors, and produces a structured report
   with health scores. On feature branches, auto-analyzes the git diff to identify affected
-  pages and test them. Use when the user asks to QA, test my app, test this page, find bugs,
+  pages and test them, with fallback for repos that have no remote. Use when the user asks to QA, test my app, test this page, find bugs,
   smoke test, or says: qa, QA, 测试一下, 帮我测, 验收, 回归测试.
 ---
 
@@ -32,26 +32,36 @@ When on a feature branch with no URL specified:
 1. Resolve the base branch dynamically (do NOT assume `main`):
    - Bash:
      ```bash
+     HAS_REMOTE=0
+     if git remote get-url origin >/dev/null 2>&1; then HAS_REMOTE=1; fi
      BASE_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')"
      [ -z "$BASE_BRANCH" ] && BASE_BRANCH="main"
      ```
    - PowerShell:
      ```powershell
+     $HAS_REMOTE = $true
+     try { git remote get-url origin *> $null } catch { $HAS_REMOTE = $false }
      $BASE_BRANCH = (git symbolic-ref refs/remotes/origin/HEAD 2>$null) -replace '^refs/remotes/origin/',''
      if (-not $BASE_BRANCH) { $BASE_BRANCH = "main" }
      ```
 
 2. Analyze the branch diff:
-   - Bash:
-     ```bash
-     git diff "$BASE_BRANCH"...HEAD --name-only
-     git log "$BASE_BRANCH"..HEAD --oneline
-     ```
-   - PowerShell:
-     ```powershell
-     git diff "$BASE_BRANCH...HEAD" --name-only
-     git log "$BASE_BRANCH..HEAD" --oneline
-     ```
+   - If `HAS_REMOTE=1`:
+     - Bash:
+       ```bash
+       git diff "origin/$BASE_BRANCH...HEAD" --name-only
+       git log "origin/$BASE_BRANCH..HEAD" --oneline
+       ```
+     - PowerShell:
+       ```powershell
+       git diff "origin/$BASE_BRANCH...HEAD" --name-only
+       git log "origin/$BASE_BRANCH..HEAD" --oneline
+       ```
+   - If `HAS_REMOTE=0`:
+     - Use local diff only (union):
+       - `git diff --name-only --cached`
+       - `git diff --name-only`
+   - If no changed files can be determined, ask user to provide target URL/pages and continue in URL-driven mode.
 
 3. Identify affected pages/routes from changed files:
    - Controller/route files → which URL paths they serve
