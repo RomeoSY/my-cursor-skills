@@ -23,10 +23,10 @@ bash /tmp/my-cursor-skills/install.sh
 | Skill | Version | Purpose |
 |-------|---------|---------|
 | `plan-review` | `1.1.0` | Review plans before coding, challenge scope, map risks and failure modes |
-| `code-review` | `1.1.0` | Pre-merge risk review focused on production-impact issues |
-| `qa` | `1.1.0` | Browser-based QA workflow with evidence-driven reporting |
-| `ship` | `1.1.0` | Safe ship flow with default dry-run and optional live execution |
-| `impl-strategy` | `1.1.0` | Decide compatibility boundary before implementation |
+| `code-review` | `1.2.1` | Pre-merge risk review focused on production-impact issues |
+| `qa` | `1.2.0` | Browser-based QA workflow with evidence-driven reporting |
+| `ship` | `1.2.0` | Safe ship flow with default dry-run and optional live execution |
+| `impl-strategy` | `1.2.0` | Decide compatibility boundary before implementation |
 | `deep-analysis` | `1.0.0` | 5-phase adversarial deep analysis framework |
 | `code-simplifier` | `1.1.0` | Simplify/refactor Python code while preserving behavior |
 
