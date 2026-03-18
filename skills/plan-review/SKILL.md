@@ -1,6 +1,6 @@
 ---
 name: plan-review
-version: 1.1.0
+version: 1.2.0
 description: >-
   Structured plan review before writing code. Challenges premises, audits existing code,
   maps failure modes, and locks in architecture. Three modes: EXPANSION (dream big),
@@ -22,19 +22,36 @@ Before reviewing anything, resolve the base branch dynamically (do NOT assume `m
 ### Bash
 
 ```bash
+HAS_REMOTE=0
+if git remote get-url origin >/dev/null 2>&1; then HAS_REMOTE=1; fi
 BASE_BRANCH="$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')"
 [ -z "$BASE_BRANCH" ] && BASE_BRANCH="main"
 git log --oneline -20
-git diff "$BASE_BRANCH" --stat
+if [ "$HAS_REMOTE" -eq 1 ]; then git fetch origin "$BASE_BRANCH" --quiet || true; fi
+if git rev-parse --verify "$BASE_BRANCH" >/dev/null 2>&1; then
+  git diff "$BASE_BRANCH" --stat
+else
+  git diff --stat --cached
+  git diff --stat
+fi
 ```
 
 ### PowerShell
 
 ```powershell
+$HAS_REMOTE = $true
+try { git remote get-url origin *> $null } catch { $HAS_REMOTE = $false }
 $BASE_BRANCH = (git symbolic-ref refs/remotes/origin/HEAD 2>$null) -replace '^refs/remotes/origin/',''
 if (-not $BASE_BRANCH) { $BASE_BRANCH = "main" }
 git log --oneline -20
-git diff $BASE_BRANCH --stat
+if ($HAS_REMOTE) { try { git fetch origin $BASE_BRANCH --quiet } catch { } }
+git rev-parse --verify $BASE_BRANCH *> $null
+if ($LASTEXITCODE -eq 0) {
+  git diff $BASE_BRANCH --stat
+} else {
+  git diff --stat --cached
+  git diff --stat
+}
 ```
 
 Then read any existing architecture docs, TODO files, or README relevant to the plan scope.
