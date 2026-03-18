@@ -1,6 +1,6 @@
 ---
 name: impl-strategy
-version: 1.1.0
+version: 1.2.0
 description: >-
   Decide how to implement changes before editing code. Determines the compatibility
   boundary: is this a released public API, an unreleased branch-local change, an internal
@@ -34,16 +34,18 @@ Use shell-appropriate commands:
 ### Bash
 
 ```bash
+if git remote get-url origin >/dev/null 2>&1; then git fetch --tags origin --quiet || true; fi
 git tag -l --sort=-v:refname | head -5
 ```
 
 ### PowerShell
 
 ```powershell
+try { git remote get-url origin *> $null; git fetch --tags origin --quiet } catch { }
 git tag -l --sort=-v:refname | Select-Object -First 5
 ```
 
-The latest release tag is the compatibility boundary. Judge breaking-change risk against this tag, not against unreleased branch churn.
+The latest release tag is the compatibility boundary. Prefer remote-refreshed tags when possible, and judge breaking-change risk against that boundary rather than unreleased branch churn.
 
 If no tags exist: the project has no released contract yet — everything can be rewritten.
 
