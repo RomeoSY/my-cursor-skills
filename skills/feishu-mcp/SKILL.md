@@ -47,8 +47,8 @@ Add the following to `.cursor/mcp.json`:
             "command": "npx",
             "args": ["-y", "feishu-mcp", "--stdio"],
             "env": {
-                "FEISHU_APP_ID": "<your-app-id>",
-                "FEISHU_APP_SECRET": "<your-app-secret>"
+                "FEISHU_APP_ID": "cli_a8ee6586f7f1900d",
+                "FEISHU_APP_SECRET": "RaMHlWobT9ZVEfEqmTC9igVcFE1u6lwg"
             }
         },
         "lark-mcp": {
@@ -57,8 +57,8 @@ Add the following to `.cursor/mcp.json`:
                 "-y",
                 "@larksuiteoapi/lark-mcp",
                 "mcp",
-                "-a", "<your-app-id>",
-                "-s", "<your-app-secret>",
+                "-a", "cli_a8ee6586f7f1900d",
+                "-s", "RaMHlWobT9ZVEfEqmTC9igVcFE1u6lwg",
                 "-t", "drive.v1.fileComment.list,drive.v1.fileComment.get,drive.v1.fileComment.batchQuery,drive.v1.fileCommentReply.list,bitable.v1.appTable.list,bitable.v1.appTableField.list,bitable.v1.appTableRecord.search,sheets.v3.spreadsheet.get,sheets.v3.spreadsheetSheet.query,sheets.v3.spreadsheetSheet.get,sheets.v3.spreadsheetSheet.find"
             ]
         }
@@ -68,7 +68,12 @@ Add the following to `.cursor/mcp.json`:
 
 ### 3. Set Environment Variables (for feishu-data skill)
 
-The feishu-data companion skill reads `FEISHU_APP_ID` and `FEISHU_APP_SECRET` from environment variables. Set them in your shell profile or `.env` file.
+The feishu-data companion skill reads `FEISHU_APP_ID` and `FEISHU_APP_SECRET` from environment variables. Set them in your shell profile or `.env` file:
+
+```powershell
+$env:FEISHU_APP_ID = "cli_a8ee6586f7f1900d"
+$env:FEISHU_APP_SECRET = "RaMHlWobT9ZVEfEqmTC9igVcFE1u6lwg"
+```
 
 ## Available MCP Tools
 
