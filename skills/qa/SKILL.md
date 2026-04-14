@@ -122,50 +122,50 @@ For each issue found, capture immediately:
 
 ### Phase 4: Report
 
-Produce this report structure:
+Produce the report using the template below. **Use Chinese section titles and column headers** for Chinese-speaking users; keep English terms in parentheses where helpful (e.g. severity levels).
 
 ```markdown
-# QA Report: [target]
-Date: [date]
-Mode: [diff-aware / full / quick]
-Pages tested: [N]
+# QA 测试报告：[目标对象]
+日期：[date]
+模式：[diff-aware / full / quick]（差异驱动 / 全量 / 快速）
+已测页面数：[N]
 
-## Health Score: [N]/100
+## 健康分：[N]/100
 
-## Summary
-| Severity | Count |
-|----------|-------|
-| Critical | N |
-| High     | N |
-| Medium   | N |
-| Low      | N |
+## 汇总
+| 严重程度 | 数量 |
+|----------|------|
+| 致命（Critical） | N |
+| 高（High）     | N |
+| 中（Medium）   | N |
+| 低（Low）      | N |
 
-## Top 3 Issues
-1. [most severe issue with screenshot evidence]
+## 重点问题 Top 3
+1. [最严重问题，附截图证据]
 2. ...
 3. ...
 
-## All Issues
+## 全部问题
 
-### ISSUE-001: [title]
-- **Severity**: Critical / High / Medium / Low
-- **Category**: Functional / Visual / Console / Performance / UX
-- **Page**: [URL]
-- **Repro**: [steps]
-- **Evidence**: [screenshot references]
+### 问题-001：[标题]
+- **严重程度**：致命 / 高 / 中 / 低（Critical / High / Medium / Low）
+- **类别**：功能 / 视觉 / 控制台 / 性能 / 体验（Functional / Visual / Console / Performance / UX）
+- **页面**：[URL]
+- **复现步骤**：[步骤]
+- **证据**：[截图或引用]
 
-### ISSUE-002: ...
+### 问题-002：...
 
-## Console Health
-- Errors: [N]
-- Warnings: [N]
-- Details: [list unique errors]
+## 控制台健康
+- 错误数：[N]
+- 警告数：[N]
+- 详情：[去重后的错误/警告列表]
 
-## Pages Tested
-| Page | Status | Console Errors | Notes |
-|------|--------|---------------|-------|
-| /    | OK     | 0             |       |
-| /dashboard | ISSUE | 2       | ISSUE-001 |
+## 已测页面
+| 页面 | 状态 | 控制台错误数 | 备注 |
+|------|------|----------------|------|
+| /    | 正常 | 0             |      |
+| /dashboard | 有问题 | 2       | 见问题-001 |
 ```
 
 ## Health Score Rubric

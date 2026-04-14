@@ -1,12 +1,9 @@
 ---
 name: deep-analysis
-version: 1.0.0
+version: 1.2.0
 description: >-
-  Structured deep analysis framework using a 5-phase adversarial questioning pipeline.
-  Compresses weeks of research into hours by extracting hidden consensus, inverting
-  assumptions, and stress-testing conclusions. Use when the user asks to deeply analyze
-  a market, strategy, technology, competitor, business idea, architecture decision,
-  or any complex topic requiring rigorous multi-angle evaluation.
+  Structured 5-phase adversarial analysis: hidden consensus, assumption inversion, stress tests.
+  Triggers: deep analysis, 深度分析, 战略分析, architecture review, market strategy.
 ---
 
 # Deep Analysis Framework
@@ -107,32 +104,32 @@ This is **steelmanning** — strengthening the opposing argument before finding 
 
 ## Output Format
 
-After all 5 phases, produce a synthesis:
+After all 5 phases, produce a synthesis. **Use the Chinese template below for user-facing headings and tables** (keep English terms in parentheses where needed for clarity).
 
 ```markdown
-# Deep Analysis: [Topic]
+# 深度分析：[主题]
 
-## Executive Summary
-[3-5 sentence overview of the most important findings]
+## 执行摘要（Executive Summary）
+[3–5 句概括最重要结论]
 
-## Hidden Consensus (Phase 2)
-[Top 3 unspoken truths with evidence]
+## 隐性共识（阶段 2）
+[附证据的前 3 条「行业共识但未明说」]
 
-## Assumption Map (Phase 3)
-| Assumption | Stability | Crack Evidence |
-|------------|-----------|----------------|
-| ...        | ...       | ...            |
+## 假设图谱（阶段 3）
+| 假设 | 稳定性 | 出现裂缝的证据 |
+|------|--------|----------------|
+| ...  | ...    | ...            |
 
-## Vulnerability Assessment (Phase 4)
-| Attack Vector | Defense Strength | Residual Risk |
-|---------------|-----------------|---------------|
-| ...           | STRONG/MOD/WEAK | ...           |
+## 脆弱性评估（阶段 4）
+| 攻击向量 | 防御强度 | 残余风险 |
+|----------|----------|----------|
+| ...      | 强/中/弱（STRONG/MOD/WEAK） | ... |
 
-## Irreducible Risks (Phase 5)
-[Risks that survive even the strongest counterarguments]
+## 不可消解风险（阶段 5）
+[即使最强反驳仍存在的风险]
 
-## Strategic Implications
-[What to do given all of the above]
+## 战略启示
+[综合以上应采取的立场与行动]
 ```
 
 ## Adaptation by Domain

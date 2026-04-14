@@ -65,9 +65,11 @@ if (-not $BASE_BRANCH) { $BASE_BRANCH = "main" }
 
 ## Output Format
 
+**Use Chinese headings inside the fence for Chinese-speaking users.**
+
 ```markdown
-## Unfreeze Result
-- Previous lock: present / absent
-- Removed: yes / no
-- Current status: inactive
+## 解除冻结结果（Unfreeze）
+- 此前锁状态：存在 / 不存在（present / absent）
+- 是否已移除：是 / 否（yes / no）
+- 当前状态：未冻结（inactive）
 ```

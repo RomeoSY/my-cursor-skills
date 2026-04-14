@@ -195,18 +195,20 @@ For each item: what type of test covers it? Does a test exist in the plan? What'
 
 ## Required Outputs
 
+Use Chinese labels in the fenced templates below when the user's working language is Chinese; keep English in parentheses where needed.
+
 ### "NOT in scope" section
 List work considered and explicitly deferred, with one-line rationale each.
 
 ### "What already exists" section
 List existing code that partially solves sub-problems and whether the plan reuses them.
 
-### Failure Modes Registry
+### Failure Modes Registry (user-facing table — Chinese headers OK)
 ```
-CODEPATH | FAILURE MODE   | CAUGHT? | TEST? | USER SEES?     | LOGGED?
----------|----------------|---------|-------|----------------|--------
+代码路径（CODEPATH） | 失效模式（FAILURE MODE） | 已捕获?（CAUGHT?） | 有测试?（TEST?） | 用户可见?（USER SEES?） | 已记录日志?（LOGGED?）
+---------------------|--------------------------|-------------------|------------------|-------------------------|----------------------
 ```
-Any row with CAUGHT=N, TEST=N, USER SEES=Silent → **CRITICAL GAP**.
+Any row with CAUGHT=N, TEST=N, USER SEES=Silent → **CRITICAL GAP**（严重缺口）.
 
 ### Diagrams (produce all that apply)
 1. System architecture
@@ -214,20 +216,20 @@ Any row with CAUGHT=N, TEST=N, USER SEES=Silent → **CRITICAL GAP**.
 3. State machine
 4. Deployment sequence
 
-### Completion Summary
+### Completion Summary (user-facing box — Chinese OK)
 ```
 +================================================================+
-|              PLAN REVIEW — COMPLETION SUMMARY                   |
+|              方案评审 — 完成小结（PLAN REVIEW）                  |
 +================================================================+
-| Mode selected        | EXPANSION / HOLD / REDUCTION            |
-| Section 1 (Arch)     | ___ issues found                        |
-| Section 2 (Errors)   | ___ error paths mapped, ___ GAPS        |
-| Section 3 (Security) | ___ issues found                        |
-| Section 4 (Tests)    | ___ gaps identified                     |
-| Section 5 (Perf)     | ___ issues found                        |
-| Section 6 (Deploy)   | ___ risks flagged                       |
-| NOT in scope         | ___ items deferred                      |
-| Failure modes        | ___ total, ___ CRITICAL GAPS            |
-| Diagrams produced    | ___ (list types)                        |
+| 所选模式（Mode）     | 扩展/守住/收敛（EXPANSION/HOLD/REDUCTION）   |
+| 第1节（架构 Arch）   | ___ 个问题                                   |
+| 第2节（错误 Errors） | ___ 条错误路径，___ 处缺口（GAPS）            |
+| 第3节（安全）        | ___ 个问题                                   |
+| 第4节（测试）        | ___ 处缺口                                   |
+| 第5节（性能）        | ___ 个问题                                   |
+| 第6节（部署）        | ___ 项风险                                   |
+| 明确不做（NOT in scope） | ___ 项延后                             |
+| 失效模式（Failure modes） | 共 ___ 条，严重缺口 ___ 条            |
+| 已产出图表（Diagrams） | ___（类型列表）                            |
 +================================================================+
 ```

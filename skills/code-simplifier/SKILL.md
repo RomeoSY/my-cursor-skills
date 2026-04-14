@@ -67,14 +67,14 @@ Only simplify code that the user explicitly points to or asks about. Do not refa
 
 ## Output Format
 
-For each simplification, provide:
+For each simplification, provide (Chinese labels below are for user-facing output):
 
 ```
-### Changes Summary
-- [Brief description of each meaningful change]
+### 变更摘要（Changes summary）
+- [每条有意义改动的简要说明]
 
-### Before → After
-[Show the refined code]
+### 修改前 → 修改后（Before → After）
+[给出精简后的代码]
 ```
 
 Only document changes that affect understanding. Do not explain trivial formatting adjustments.

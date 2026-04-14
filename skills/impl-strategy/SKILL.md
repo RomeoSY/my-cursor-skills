@@ -73,13 +73,13 @@ Stop and ask the user before proceeding if:
 
 ## Output
 
-State the decision briefly:
+State the decision briefly (use Chinese for user-facing lines; English terms in parentheses optional):
 
 ```
-Compatibility boundary: [latest release tag or "no releases yet"]
-Surface: [released API / unreleased branch code / internal / persisted schema]
-Decision: [rewrite directly / preserve compat + migration / deprecation path]
-Rationale: [one sentence]
+兼容边界（Compatibility boundary）：[最新 release 标签，或「尚无正式发布」]
+变更表面（Surface）：[已发布 API / 未发布分支代码 / 内部实现 / persisted schema]
+决策（Decision）：[直接重写 / 保留兼容并迁移 / deprecation path]
+理由（Rationale）：[一句话]
 ```
 
 Then proceed with the implementation.

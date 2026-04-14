@@ -70,26 +70,28 @@ Require each recommendation to have:
 
 ## Output Format
 
+**Use Chinese headings inside the fence for Chinese-speaking users.**
+
 ```markdown
-## Retro Report
-- Period: ...
-- Base branch: ...
+## 复盘报告
+- 周期：...
+- 基线分支：...
 
-### Delivery Summary
-| Metric | Value | Trend |
-|--------|-------|-------|
+### 交付概览
+| 指标 | 数值 | 趋势 |
+|------|------|------|
 
-### What Went Well
+### 做得好的
 - ...
 
-### What Went Wrong
+### 做得不好的
 - ...
 
-### Root Patterns
-- Pattern A -> evidence
-- Pattern B -> evidence
+### 根因模式
+- 模式 A → 证据
+- 模式 B → 证据
 
-### Action Plan (Next Cycle)
-| Action | Owner | Metric | Due |
-|--------|-------|--------|-----|
+### 下期行动项
+| 行动项 | 负责人角色 | 衡量指标 | 截止 |
+|--------|------------|----------|------|
 ```

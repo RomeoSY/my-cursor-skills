@@ -156,27 +156,29 @@ Before final report, run a second-pass skeptic recheck:
 
 ## Output Format
 
+**Use Chinese headings inside the fence for Chinese-speaking users** (keep severity tokens like CRITICAL in English).
+
 ```markdown
-## CSO Security Report
+## 安全审查报告（CSO）
 
-### Scope
-- Base branch: ...
-- Scoped files: ...
+### 范围
+- 基线分支：...
+- 审查文件：...
 
-### Summary
-- CRITICAL: N
-- WARNING: N
-- INFORMATIONAL: N
+### 汇总
+- 阻断级（CRITICAL）：N
+- 警告（WARNING）：N
+- 提示（INFORMATIONAL）：N
 
-### Findings
-#### [SEVERITY] [CONFIDENCE=N/10] [STATUS] [Category] `path`
-- Evidence: ...
-- Exploit path: ...
-- Mitigations checked: ...
-- Impact: ...
-- Recommendation: ...
+### 发现项
+#### [严重程度] [置信度=N/10] [状态] [类别] `path`
+- 证据：...
+- 利用路径：...
+- 已检查的缓解措施：...
+- 影响：...
+- 建议：...
 
-### Threat Model Snapshot
-| Surface | STRIDE Risks | Notes |
-|---------|--------------|-------|
+### 威胁模型快照
+| 攻击面 | STRIDE 风险 | 说明 |
+|--------|-------------|------|
 ```

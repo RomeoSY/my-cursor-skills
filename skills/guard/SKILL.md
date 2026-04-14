@@ -116,11 +116,13 @@ Without this, stay DRY-RUN.
 
 ## Step 6: Output Format
 
+**Use Chinese headings inside the fence for Chinese-speaking users** (keep DRY-RUN / LIVE as-is).
+
 ```markdown
-## Guard Status
-- Freeze: active / inactive
-- Allowed root: ...
-- Risk gate result: safe / risky
-- Execution mode: DRY-RUN / confirmed live
-- Block reason (if blocked): ...
+## 全护栏状态（Guard）
+- 范围冻结（Freeze）：生效 / 未生效（active / inactive）
+- 允许写入的根路径：...
+- 风险闸门结果：安全 / 有风险（safe / risky）
+- 执行模式：演练（DRY-RUN）/ 已确认执行（confirmed live）
+- 拦截原因（如有）：...
 ```

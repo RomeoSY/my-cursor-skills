@@ -190,29 +190,29 @@ Collect automatically (do not ask the user):
 
 Infer change type from paths and commit messages: feature, fix, refactor, or docs.
 
-Output:
+Output (use Chinese section titles below for Chinese-speaking users):
 
 ```markdown
-# Pull Request Draft
+# 拉取请求（PR）草稿
 
-## Title
-<type>: <concise summary>
+## 标题
+<type>: <一句话摘要>
 
-## Description
-This pull request <adds/fixes/updates> ...
+## 说明
+本 PR <新增/修复/更新> …
 
-- <key change 1>
-- <key change 2>
-- <key change 3>
+- <要点 1>
+- <要点 2>
+- <要点 3>
 
-## Test Plan
-- [x] Automated tests pass
-- [ ] Manual QA on affected flows (if applicable)
+## 测试计划
+- [x] 自动化测试已通过
+- [ ] 已对受影响流程做手工验收（如适用）
 ```
 
 ## Final Output Rules
 
-- In **DRY-RUN**: clearly label output as `DRY-RUN` and list non-executed commands.
-- In **LIVE**: clearly label output as `LIVE EXECUTION` and include execution results.
+- In **DRY-RUN**: label output as `DRY-RUN` and list commands not executed.
+- In **LIVE**: label as `LIVE EXECUTION` and include execution results.
 - Never silently switch from DRY-RUN to LIVE.
-- If unsure about intent, stay DRY-RUN.
+- If intent is unclear, stay DRY-RUN.

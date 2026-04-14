@@ -128,31 +128,31 @@ Do NOT mark CRITICAL when one of these is true:
 
 ## Required Output Format
 
-Always output findings in this structure:
+Always output findings in this structure. **User-facing labels are Chinese** (English in parentheses where needed):
 
 ```markdown
-## Code Review: [branch-or-scope]
+## 代码审查：[分支或范围]
 
-### Summary
-- CRITICAL: N
-- WARNING: N
-- INFORMATIONAL: N
+### 汇总
+- 阻断级（CRITICAL）：N
+- 警告（WARNING）：N
+- 提示（INFORMATIONAL）：N
 
-### Findings
+### 发现项
 
-#### [SEVERITY] [CONFIDENCE] [Category] `path/to/file.py:line`
-- Evidence: [what in the code supports this]
-- Trigger path: [input -> code path -> failure]
-- Mitigation checked: [what safeguards exist / none found]
-- Impact: [security/data/availability/user impact]
-- Recommendation: [specific fix]
-- Stop-ship rationale: [why CRITICAL or why downgraded]
+#### [严重程度] [置信度] [类别] `path/to/file.py:行号`
+- 证据：[代码中支持该结论的要点]
+- 触发路径：[输入 -> 代码路径 -> 失效方式]
+- 已检查的缓解措施：[已有防护 / 未发现]
+- 影响面：[安全 / 数据 / 可用性 / 用户侧影响]
+- 建议：[具体修复]
+- 阻断理由：[为何判定为阻断级，或为何降级]
 ```
 
 If CRITICAL issues exist, ask user per issue:
-- A) Fix now (recommended)
-- B) Acknowledge and continue
-- C) False positive / skip
+- A) 立即修复（推荐）
+- B) 已知风险并继续
+- C) 误判 / 跳过
 
 ## Step 3: Verification After Fixes
 

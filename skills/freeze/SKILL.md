@@ -117,10 +117,12 @@ if (-not $BASE_BRANCH) { $BASE_BRANCH = "main" }
 
 ## Output Format
 
+**Use Chinese headings inside the fence for Chinese-speaking users.**
+
 ```markdown
-## Freeze Activated
-- Allowed root: ...
-- Lock file: .cursor/freeze-scope.json
-- Enforcement: write operations outside scope are blocked
-- Status: active
+## 已启用改动范围冻结（Freeze）
+- 允许写入的根路径：...
+- 锁文件：.cursor/freeze-scope.json
+- 策略：超出范围的写入将被拦截
+- 状态：生效中（active）
 ```
